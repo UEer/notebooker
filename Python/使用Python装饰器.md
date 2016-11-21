@@ -3,8 +3,7 @@
 ----
 链接:
 [作者Github](https://github.com/EaconTang)
- | 
-[原文出处](http://blog.tangyingkang.com/post/2015/12/25/python-decorator/)
+| [原文出处](http://blog.tangyingkang.com/post/2015/12/25/python-decorator/)
 ----
 
 ![](http://qn.tangyingkang.com/image/blog/decorator.png)
