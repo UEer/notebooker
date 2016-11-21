@@ -1,5 +1,11 @@
 ## Python装饰器
 
+[Github](https://github.com/EaconTang)
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+[原文出处](http://blog.tangyingkang.com/post/2015/12/25/python-decorator/)  
+
+<hr/>
+
 ![](http://qn.tangyingkang.com/image/blog/decorator.png)
 
 Python的装饰器(Decorator)是个很优雅的语法糖，它让工程中的代码复用变得很艺术。  
