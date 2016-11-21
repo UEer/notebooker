@@ -1,10 +1,10 @@
 ## [PyCon2016演讲]大数据监控告警系统的实现  
 
-
+----
+链接:
 [作者Github](https://github.com/EaconTang)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-[原文出处](http://blog.tangyingkang.com/post/2016/09/26/monitor-alert-system-in-big-data/)  
-
+ | 
+[原文出处](http://blog.tangyingkang.com/post/2016/09/26/monitor-alert-system-in-big-data/)
 ----
 
 ![](http://qn.tangyingkang.com/image/blog/pycon/pycon2016.jpg)
