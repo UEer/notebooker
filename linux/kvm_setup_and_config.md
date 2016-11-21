@@ -85,11 +85,10 @@ iface br0 inet static
 ![这里写图片描述](http://img.blog.csdn.net/20161118112020829)
 按照步骤下去，然后启动一个窗口，按照安装系统方式下去就好了。
 
-（经尝试，下面三种方法失败，用iso方法安装，需要图形界面介入而失败）
+（经尝试，下面2种方法失败，用iso方法安装，需要图形界面介入而失败）
 创建虚拟机有3种方法：
-1.virt-manager, gui安装方式
-2.virt-install,     python 脚本安装
-3.ubuntu-vm-builder
+1. virt-install,     python 脚本安装
+2. ubuntu-vm-builder
 
 
 ####ubuntu-vm-builder
