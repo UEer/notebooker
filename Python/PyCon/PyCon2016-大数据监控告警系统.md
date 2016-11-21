@@ -5,7 +5,7 @@
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [原文出处](http://blog.tangyingkang.com/post/2016/09/26/monitor-alert-system-in-big-data/)  
 
-<hr/>
+----
 
 ![](http://qn.tangyingkang.com/image/blog/pycon/pycon2016.jpg)
 以下内容整理自[PyCon2016](http://cn.pycon.org/2016/)深圳场的[演讲稿](http://ocgxshkaw.bkt.clouddn.com/10%E3%80%8A%E5%A4%A7%E6%95%B0%E6%8D%AE%E7%9B%91%E6%8E%A7%E5%91%8A%E8%AD%A6%E7%B3%BB%E7%BB%9F%E3%80%8B%E6%B1%A4%E8%8B%B1%E5%BA%B7.pdf)－－大数据监控告警系统。  

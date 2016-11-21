@@ -1,6 +1,6 @@
 ## Python装饰器
 
-[Github](https://github.com/EaconTang)
+[作者Github](https://github.com/EaconTang)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 [原文出处](http://blog.tangyingkang.com/post/2015/12/25/python-decorator/)  
 
