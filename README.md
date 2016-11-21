@@ -10,6 +10,7 @@
     * [大数据监控告警系统分享](./Python/PyCon/PyCon2016-大数据监控告警系统.md)
 - [Docker](./Docker/)
     * [dockerhub部署](./Docker/dockerhub_registry_building.md)
+    * [docker swarm部署](./Docker/docker_swarm_mode.md)
 
 理念：开发、分享
 
