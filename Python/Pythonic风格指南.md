@@ -1,5 +1,10 @@
 ## Pythonic风格指南
 
+作者：[EaconTang](https://github.com/EaconTang) | 文章出处：[博客链接](http://blog.tangyingkang.com/post/2015/11/28/pythonic-code-style-guideline/)  
+
+----
+
+
 ![](http://qn.tangyingkang.com/image/blog/python/pythonic.png)
 
 ### 什么是Pythonic？
