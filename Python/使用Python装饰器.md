@@ -36,7 +36,7 @@ Python的装饰器(Decorator)是个很优雅的语法糖，它让工程中的代
 
 	foo = decorator_1(decorator_2(foo))	
 		
-再看一个简单的，在我的博文[《感受Python的编程特性》](/post/2015/08/03/python-features/)曾用过这个例子：
+再看一个简单的，在我的博文[《感受Python的编程特性》](http://blog.tangyingkang.com/post/2015/08/03/python-features/)曾用过这个例子：
 
 	# 这里定义一个装饰器，它在函数运行前后会分别print一些内容
 	# 装饰器函数需要一个参数func，就是指被装饰的原函数 
