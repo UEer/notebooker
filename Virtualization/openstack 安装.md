@@ -694,12 +694,10 @@ yum install openstack-swift-proxy python-swiftclient \
 openstack-config --set /etc/swift/proxy-server.conf DEFAULT  bind_port 8080
 openstack-config --set /etc/swift/proxy-server.conf DEFAULT  user swift
 openstack-config --set /etc/swift/proxy-server.conf DEFAULT swift_dir /etc/swift
-openstack-config --set /etc/swift/proxy-server.conf pipeline:main pipeline " catch_errors gatekeeper healthcheck proxy-logging cache
-container_sync bulk ratelimit authtoken keystoneauth container-quotas
-account-quotas slo dlo versioned_writes proxy-logging proxy-server"
+openstack-config --set /etc/swift/proxy-server.conf pipeline:main pipeline "catch_errors gatekeeper healthcheck proxy-logging cache container_sync bulk ratelimit authtoken keystoneauth container-quotas account-quotas slo dlo versioned_writes proxy-logging proxy-server"
 openstack-config --set /etc/swift/proxy-server.conf app:proxy-server use egg:swift#proxy
 openstack-config --set /etc/swift/proxy-server.conf app:proxy-server account_autocreate true
-openstack-config --set /etc/swift/proxy-server.conf filter:keystoneauth use = egg:swift#keystoneauth
+openstack-config --set /etc/swift/proxy-server.conf filter:keystoneauth use  egg:swift#keystoneauth
 openstack-config --set /etc/swift/proxy-server.conf filter:keystoneauth  operator_roles "admin,user"
 openstack-config --set /etc/swift/proxy-server.conf filter:authtoken paste.filter_factory keystonemiddleware.auth_token:filter_factory
 openstack-config --set /etc/swift/proxy-server.conf filter:authtoken auth_uri http://controller:5000
@@ -709,7 +707,7 @@ openstack-config --set /etc/swift/proxy-server.conf filter:authtoken project_dom
 openstack-config --set /etc/swift/proxy-server.conf filter:authtoken user_domain_id default
 openstack-config --set /etc/swift/proxy-server.conf filter:authtoken project_name service
 openstack-config --set /etc/swift/proxy-server.conf filter:authtoken username swift
-openstack-config --set /etc/swift/proxy-server.conf filter:authtoken password SWIFT_PASS
+openstack-config --set /etc/swift/proxy-server.conf filter:authtoken password 123456
 openstack-config --set /etc/swift/proxy-server.conf filter:authtoken delay_auth_decision true
 openstack-config --set /etc/swift/proxy-server.conf filter:cache use egg:swift#memcache
 openstack-config --set /etc/swift/proxy-server.conf filter:cache memcache_servers 127.0.0.1:11211
@@ -736,7 +734,7 @@ openstack-config --set /etc/swift/account-server.conf DEFAULT user swift
 openstack-config --set /etc/swift/account-server.conf DEFAULT swift_dir /etc/swift
 openstack-config --set /etc/swift/account-server.conf DEFAULT devices /srv/node
 openstack-config --set /etc/swift/account-server.conf DEFAULT mount_check true
-openstack-config --set /etc/swift/account-server.conf pipeline:main pipeline healthcheck recon account-server
+openstack-config --set /etc/swift/account-server.conf pipeline:main pipeline "recon account-server"
 openstack-config --set /etc/swift/account-server.conf filter:recon use egg:swift#recon
 openstack-config --set /etc/swift/account-server.conf filter:recon recon_cache_path /var/cache/swift
 # /etc/swift/container-server.conf
@@ -746,7 +744,7 @@ openstack-config --set /etc/swift/container-server.conf DEFAULT user swift
 openstack-config --set /etc/swift/container-server.conf DEFAULT swift_dir /etc/swift
 openstack-config --set /etc/swift/container-server.conf DEFAULT devices /srv/node
 openstack-config --set /etc/swift/container-server.conf DEFAULT mount_check true
-openstack-config --set /etc/swift/container-server.conf pipeline:main pipeline healthcheck recon container-server
+openstack-config --set /etc/swift/container-server.conf pipeline:main pipeline "recon container-server"
 openstack-config --set /etc/swift/container-server.conf filter:recon use egg:swift#recon
 openstack-config --set /etc/swift/container-server.conf filter:recon recon_cache_path /var/cache/swift
 # /etc/swift/container-server.conf
@@ -758,10 +756,10 @@ openstack-config --set /etc/swift/object-server.conf DEFAULT user swift
 openstack-config --set /etc/swift/object-server.conf DEFAULT swift_dir /etc/swift
 openstack-config --set /etc/swift/object-server.conf DEFAULT devices /srv/node
 openstack-config --set /etc/swift/object-server.conf DEFAULT mount_check true
-openstack-config --set /etc/swift/object-server.conf pipeline:main pipeline = healthcheck recon object-server
-openstack-config --set /etc/swift/object-server.conf filter:recon use = egg:swift#recon
-openstack-config --set /etc/swift/object-server.conf filter:recon recon_cache_path = /var/cache/swift
-openstack-config --set /etc/swift/object-server.conf filter:recon recon_lock_path = /var/lock
+openstack-config --set /etc/swift/object-server.conf pipeline:main pipeline  "recon object-server"
+openstack-config --set /etc/swift/object-server.conf filter:recon use  egg:swift#recon
+openstack-config --set /etc/swift/object-server.conf filter:recon recon_cache_path  /var/cache/swift
+openstack-config --set /etc/swift/object-server.conf filter:recon recon_lock_path  /var/lock
 ```
     chown -R swift:swift /srv/node
     mkdir -p /var/cache/swift
@@ -855,14 +853,27 @@ systemctl enable openstack-swift-object.service openstack-swift-object-auditor.s
   openstack-swift-object-replicator.service openstack-swift-object-updater.service
 
   
-systemctl start openstack-swift-container.service \
+systemctl restart openstack-swift-container.service \
   openstack-swift-container-auditor.service openstack-swift-container-replicator.service \
   openstack-swift-container-updater.service
-systemctl start openstack-swift-account.service openstack-swift-account-auditor.service \
+systemctl restart openstack-swift-account.service openstack-swift-account-auditor.service \
   openstack-swift-account-reaper.service openstack-swift-account-replicator.service  
-systemctl start openstack-swift-object.service openstack-swift-object-auditor.service \
+systemctl restart openstack-swift-object.service openstack-swift-object-auditor.service \
   openstack-swift-object-replicator.service openstack-swift-object-updater.service
 ```
+
+#### liberasurecode_backend_open: dynamic linking error libJerasure.so.2 找不到共享库文件的问题终于解决了。解决的办法如下：
+
+安装： `libJerasure2-2.0.20141229gitff70321-1.1.x86_64.rpm`
+安装这个包前要先装`libgf_complete1-1.0.20140410giteb4463f-1.4.x86_64.rpm`
+
+另外还需要下载`isa-l-2.14.0.tar.gz` 解决libisal库的问题
+
+最后再装一遍`liberasurecode` （可以从openstack 用git clone下载安装）
+
+装完以后，重启一下swift proxy，应该就可以起来了。
+
+起来之后还会说找不到libshss.so.1，这个没关系。
 
 ###### 验证操作
 
@@ -877,18 +888,6 @@ swift download container1 FILE
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-> swift liberasurecode-1.2.0-2.el7.x86_64.rpm  
+#### 安装过程遇到的问题
+每个服务默认在 /var/log/ 有日志， 服务启动时查看/var/log/messages
+主要问题是配置文件没配置好，以及相应的库没安装好。
