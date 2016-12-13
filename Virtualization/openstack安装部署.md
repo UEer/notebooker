@@ -1,3 +1,6 @@
+# OpenStack部署笔记
+作者：[pan1hao](https://github.com/orgs/UEer/people/pan1hao)
+
 ###### OpenStack通过各种补充服务提供基础设施即服务 Infrastructure-as-a-Service (IaaS)。
 
 openstack 主要服务
@@ -21,7 +24,7 @@ orchestration | heat
 ![image](http://docs.openstack.org/liberty/zh_CN/install-guide-rdo/_images/hwreqs.png)
 
 #### 控制节点
-运行身份认证服务(keystone),镜像服务(glance), 管理部分网络(neutron),计算(nova)服务，==不同的网络代理==和dashborad(horizon)。
+运行身份认证服务(keystone),镜像服务(glance), 管理部分网络(neutron),计算(nova)服务，**不同的网络代理**和dashborad(horizon)。
 额外的 sql数据库(maridb), 消息队列(rabbitmq), 时间同步服务(chrony)
 至少两块网卡
 #### 计算节点
@@ -30,10 +33,10 @@ orchestration | heat
 
 #### 块设备存储
 向实例提供磁盘
-计算节点和这个节点间的服务流量使用==管理网络==。生产环境中应该实施单独的==存储网络==以增强性能和安全
+计算节点和这个节点间的服务流量使用**管理网络**。生产环境中应该实施单独的**存储网络**以增强性能和安全
 
 #### 对象存储
-==对象存储服务用来存储账号，容器和对象==
+**对象存储服务用来存储账号，容器和对象**
 
 ### 网络
 1. 提供者网络`bridge`
