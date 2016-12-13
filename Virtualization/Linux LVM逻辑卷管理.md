@@ -1,3 +1,7 @@
+#   KVM
+
+KVM 的存储虚拟化是通过存储池（Storage Pool）和卷（Volume）来管理的。
+
 ![image](http://img1.51cto.com/attachment/201101/4/847418_1294140892kbAv.png)
 -----------
 *创建LVM卷，从下到上创建*
