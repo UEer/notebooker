@@ -14,7 +14,7 @@ Slave节点包含一个docker daemon程序，运行的容器进程，以及服�
 
 Swarm还声称__“swap, plug, and play”__，采用了灵活可插拔的架构模式，所以你可以自由选择不同的调度系统、配置管理和服务发现工具，支持包括etcd/consul/zookeeper。当然，你也可以只用一个文件列出所有节点来简单管理(上面的部署示例即是)。  
 Swarm也可以运行在Mesos这样的大规模管理框架之上，Mesos和Mesosphere DCOS有能力让Swarm和其它应用运行在同一个集群上，包括大数据应用，如Spark、Storm、Kafka以及Hadoop。这也提高了资源的使用，同时减少了消耗和复杂性。  
-所以我认为这是Docker的一个明智选择，给了用户更多的选择余地。__这也是为什么Docker自带Swarm，与当年当年Windows自带IE的行为有着很大的不同。__  
+所以我认为这是Docker的一个明智选择，给了用户更多的选择余地。__这也是为什么Docker自带Swarm，但和当年Windows自带IE的行为有着很大的不同。__  
 
 最近的在项目中，刚好用了Swarm与Mesos结合的容器管理方案，顺便上一张整理的架构图：
 ![](http://qn.tangyingkang.com/image/blog/docker/swarm-mesos-1216.jpeg)
