@@ -17,6 +17,8 @@
     * [docker swarm部署](./Docker/docker_swarm_mode.md)
     * [Docker最佳实践](./Docker/Docker最佳实践.md)
     * [Docker Swarm架构与实战](./Docker/Docker Swarm架构与实战.md)
+- [Cloudera](./Cloudera/)
+    * [cloudera部署](./Cloudera/cloudera部署.md)
 
 理念：开发、分享
 
