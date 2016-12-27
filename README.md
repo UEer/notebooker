@@ -20,6 +20,8 @@
     * [Docker Swarm架构与实战](./Docker/Docker Swarm架构与实战.md)
 - [Cloudera](./Cloudera/)
     * [cloudera部署](./Cloudera/cloudera部署.md)
+- [DevOps](./DevOps/)
+    * [集群自动化工具Ansible](./DevOps/集群自动化工具Ansible.md) 
 
 理念：开发、分享
 
