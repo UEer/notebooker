@@ -7,6 +7,7 @@
     * [KVM安装配置](./Virtualization/kvm_setup_and_config.md)
     * [openstack安装部署](./Virtualization/openstack安装部署.md)
     * [Linux LVM逻辑卷管理](./Virtualization/Linux LVM逻辑卷管理.md)
+    * [KVM克隆笔记](./Virtualization/KVM克隆笔记.md)
 - [Python](./Python/)
     * [Python装饰器](./Python/使用Python装饰器.md)
     * [大数据监控告警系统分享](./Python/PyCon/PyCon2016-大数据监控告警系统.md)
