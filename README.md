@@ -13,6 +13,7 @@
     * [大数据监控告警系统分享](./Python/PyCon/PyCon2016-大数据监控告警系统.md)
     * [Pythonic风格指南](./Python/Pythonic风格指南.md)
     * [wsgi pep333](./Python/wsgi pep333.md)
+    * [Python实现守护进程](./Python/Python实现守护进程.md)
 - [Docker](./Docker/)
     * [dockerhub部署](./Docker/dockerhub_registry_building.md)
     * [docker swarm部署](./Docker/docker_swarm_mode.md)
