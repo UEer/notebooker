@@ -36,7 +36,7 @@ Python的装饰器(Decorator)是个很优雅的语法糖，它让工程中的代
 
 	foo = decorator_1(decorator_2(foo))	
 		
-再看一个简单的，在我的博文[《感受Python的编程特性》](http://blog.tangyingkang.com/post/2015/08/03/python-features/)曾用过这个例子：
+再看一个简单的，在我的博文[《感受Python的编程特性》](/post/2015/08/03/python-features/)曾用过这个例子：
 
 	# 这里定义一个装饰器，它在函数运行前后会分别print一些内容
 	# 装饰器函数需要一个参数func，就是指被装饰的原函数 
@@ -148,7 +148,7 @@ Python的装饰器(Decorator)是个很优雅的语法糖，它让工程中的代
 			@wraps(func)	
 			def wrapper(*args, **kwargs):
 				# 将函数名和参数拼接为字符串作为缓存的key
-				key = '{}/{}/{}'.format(func.__name__, args, kwargs)
+				key = '<{}_{}_{}>'.format(func.__name__, args, kwargs)
 				# 如果有这个key，说明缓存过
 				if key in cache:
 					# 检查这个缓存结果有无超时失效
@@ -178,13 +178,18 @@ Python的装饰器(Decorator)是个很优雅的语法糖，它让工程中的代
 #### 单例模式的优雅实现
 单例模式是简单经典的一个设计模式，我们看看用Python装饰器是怎样实现的：
 
+	from functools import wraps
+
 	def singleton(cls):
 		_instances = {}		# 容器字典，存储每个类对应生成的实例
+
+		@wraps(cls)
 		def wrapper(*args, **kwargs):
 			# 检查类是否_instances的key；如果是，直接返回生成过的实例
-			if cls not in _instances:
-				_instances[cls] = cls(*args, **kwargs)
-			return _instances[cls]
+			key = '<{}_{}_{}>'.format(cls.__name__, args, kwargs)
+	        if key not in _instances:
+	            _instances[key] = cls(*args, **kwargs)
+	        return _instances[key]
 		return wrapper
 		
 	@singleton
@@ -192,8 +197,38 @@ Python的装饰器(Decorator)是个很优雅的语法糖，它让工程中的代
 		def __init__(self, a=0):
 			self.a = a
 			
+	# 测试		
 	foo1 = Foo(1)
-	foo2 = Foo(2)
+	foo2 = Foo(1)
 	print foo1.a			# Out: 1
 	print foo2.a			# Out: 1
 	print id(foo1) == id(foo2)		# 结果为True，两个实例id相等，证明这个类确实是单例的
+
+	foo3 = Foo(3)
+	print id(foo3) == id(foo1)	# 结果为False，用不同参数初始化的实例，当然也不应该相同
+
+#### 线程装饰器实现简单异步
+在http请求中处理异步, 除了使用消息系统, 也可以用简单的线程处理。  
+使用下面这个轻量级线程装饰器```@asyn```, 灵巧地将被装饰的函数进行异步处理, 耗时的操作将在新线程中运行，web服务（如：flask）可以直接返回响应, 无需等待：
+
+	from threading import Thread
+	from functools import wraps
+    
+	def asyn(f):
+	    """
+	    :param f: 处理函数
+	    :return: 封装了处理函数的线程
+	    """
+	    @wraps(f)
+	    def wrapper(*args, **kwargs):
+	        Thread(target=f, args=args, kwargs=kwargs).start()
+    	return wrapper
+
+    @asyn
+    def foo(*args):
+    	"""web服务中比较耗时的函数方法"""
+        time.sleep(5)
+    
+    get_requests()
+    foo()           # 在这里调用foo方法, 不会阻塞
+    response()
