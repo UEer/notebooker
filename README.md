@@ -23,6 +23,8 @@
     * [cloudera部署](./Cloudera/cloudera部署.md)
 - [DevOps](./DevOps/)
     * [集群自动化工具Ansible](./DevOps/集群自动化工具Ansible.md) 
+- [WebDev](./WebDev/)
+    * [RESTful概念与最佳实践](./WebDev/RESTful概念与最佳实践.md)
 
 理念：开发、分享
 
